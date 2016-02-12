@@ -4,9 +4,28 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload');
 
 
+var gulp = require('gulp'),
+    less = require('gulp-less');
+
+
+
 gulp.task('webserver', function() {
   connect.server();
 });
+
+gulp.task('less',function(){
+    gulp.src('dist/less/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('dist/css/'))
+    });
+
+
+
+gulp.task('watch', function() {
+    gulp.watch('dist/less/*.less', ['less']);
+});
+
+
 
 
 gulp.task('bower', function() {
@@ -25,4 +44,9 @@ gulp.task('watch', function() {
   gulp.watch('css/*.css', ['css']);
 });
 
-gulp.task('default', ['webserver']);
+gulp.task('default', ['less','webserver']);
+
+
+
+
+
