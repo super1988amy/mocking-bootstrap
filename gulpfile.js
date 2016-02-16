@@ -27,10 +27,12 @@ gulp.task('less',function(){
     .pipe(connect.reload());
 });
 
-gulp.task('html', function(){
-     gulp.src('*.html')
-     .pipe(connect,reload());
+gulp.task('html', function () {
+    gulp.src('*.html')
+    .pipe(connect.reload());
 });
+
+
 
 
 gulp.task('watch', function() {
