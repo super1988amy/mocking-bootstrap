@@ -32,11 +32,16 @@ gulp.task('html', function () {
     .pipe(connect.reload());
 });
 
-
+gulp.task('css', function() {
+  gulp.src('dist/css/*.css')
+    .pipe(css())
+    .pipe(livereload());
+});
 
 
 gulp.task('watch', function() {
     gulp.watch('dist/less/*.less', ['less']);
+    gulp.watch('dist/css/*.css', ['css']);
     gulp.watch('*.html', ['html']);
 });
 
@@ -48,17 +53,15 @@ gulp.task('bower', function() {
         .pipe(gulp.dest('bower_components/'))
 });
 
-/*
-gulp.task('css', function() {
-  gulp.src('css/*.css')
-    .pipe(css())
-    .pipe(livereload());
-});
+
+
+
 
 gulp.task('watch', function() {
   livereload.listen(); //要在这里调用listen()方法
   gulp.watch('css/*.css', ['css']);
-}); */
+});
+
 
 gulp.task('default', ['less','server','watch']);
 
